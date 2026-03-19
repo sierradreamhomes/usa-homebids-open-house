@@ -115,6 +115,21 @@
     btnSyncNow.addEventListener('click', handleSyncNow);
     btnEndOpenhouse.addEventListener('click', endOpenHouse);
 
+    // === KEYBOARD SCROLL FIX (smaller tablets) ===
+    // When the soft keyboard opens, scroll the focused input into view
+    // so it isn't hidden behind the keyboard.
+    const signinInputs = document.querySelectorAll('#signin-form input');
+    signinInputs.forEach(function (input) {
+      input.addEventListener('focus', function () {
+        // Re-apply readonly removal for fields that were reset
+        this.removeAttribute('readonly');
+        // Delay to let the keyboard finish animating open
+        setTimeout(function () {
+          input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 350);
+      });
+    });
+
     // Register service worker
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('sw.js').catch(() => {});
@@ -333,6 +348,11 @@
     currentContactType = null;
     agentAnswer = null;
     buyerAgentAnswer = null;
+
+    // Re-apply readonly to block autofill on next visitor
+    [signinName, signinPhone, signinEmail, signinAgentName].forEach(function (el) {
+      el.setAttribute('readonly', '');
+    });
 
     // Reset pills
     document.querySelectorAll('.pill-btn').forEach(b => b.classList.remove('selected'));

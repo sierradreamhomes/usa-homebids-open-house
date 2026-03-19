@@ -104,6 +104,7 @@ button { cursor: pointer; background: none; border: none; }
   inset: 0;
   display: none;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .screen.active { display: flex; }
 
@@ -181,6 +182,12 @@ button { cursor: pointer; background: none; border: none; }
 
 .form-group input::placeholder {
   color: var(--gray-dark);
+}
+
+/* Readonly inputs used for autofill prevention should look identical to normal inputs */
+.form-group input[readonly] {
+  cursor: text;
+  opacity: 1;
 }
 
 .form-group input:focus {

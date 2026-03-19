@@ -108,17 +108,17 @@
       <div class="signin-fields">
         <div class="form-group">
           <label for="signin-name">Full Name</label>
-          <input type="text" id="signin-name" placeholder="Your full name" required autocomplete="nope" data-form-type="other" data-lpignore="true" data-1p-ignore>
+          <input type="text" id="signin-name" name="guest_fullname_x" placeholder="Your full name" required readonly onfocus="this.removeAttribute('readonly')" autocomplete="off" data-form-type="other" data-lpignore="true" data-1p-ignore aria-autocomplete="none">
         </div>
 
         <div class="form-row">
           <div class="form-group">
             <label for="signin-phone">Phone Number</label>
-            <input type="tel" id="signin-phone" placeholder="(555) 555-5555" autocomplete="nope" data-form-type="other" data-lpignore="true" data-1p-ignore>
+            <input type="tel" id="signin-phone" name="guest_tel_x" placeholder="(555) 555-5555" readonly onfocus="this.removeAttribute('readonly')" autocomplete="off" data-form-type="other" data-lpignore="true" data-1p-ignore aria-autocomplete="none">
           </div>
           <div class="form-group">
             <label for="signin-email">Email Address</label>
-            <input type="text" id="signin-email" placeholder="you@example.com" autocomplete="nope" data-form-type="other" data-lpignore="true" data-1p-ignore>
+            <input type="text" id="signin-email" name="guest_mail_x" placeholder="you@example.com" readonly onfocus="this.removeAttribute('readonly')" autocomplete="off" data-form-type="other" data-lpignore="true" data-1p-ignore aria-autocomplete="none">
           </div>
         </div>
 
@@ -144,7 +144,7 @@
         <div class="question-block conditional hidden" id="q-agent-name">
           <div class="form-group">
             <label for="signin-agent-name">Agent's name?</label>
-            <input type="text" id="signin-agent-name" placeholder="Your agent's name" autocomplete="nope" data-form-type="other" data-lpignore="true" data-1p-ignore>
+            <input type="text" id="signin-agent-name" name="guest_agentref_x" placeholder="Your agent's name" readonly onfocus="this.removeAttribute('readonly')" autocomplete="off" data-form-type="other" data-lpignore="true" data-1p-ignore aria-autocomplete="none">
           </div>
           <button type="button" class="btn-primary btn-continue" id="btn-continue">CONTINUE</button>
         </div>
