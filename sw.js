@@ -1,5 +1,5 @@
 /* Service Worker — USA Homebids Open House PWA */
-const CACHE_NAME = 'usahomebids-openhouse-v9';
+const CACHE_NAME = 'usahomebids-openhouse-v10';
 const ASSETS = [
   './',
   './index.html',
