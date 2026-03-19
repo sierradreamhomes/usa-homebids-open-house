@@ -1,0 +1,26 @@
+{
+  "name": "USA Homebids Open House",
+  "short_name": "Open House",
+  "description": "Open House sign-in app by USA Homebids",
+  "start_url": "/usa-homebids-open-house/",
+  "scope": "/usa-homebids-open-house/",
+  "id": "/usa-homebids-open-house/",
+  "display": "standalone",
+  "orientation": "any",
+  "theme_color": "#141414",
+  "background_color": "#141414",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

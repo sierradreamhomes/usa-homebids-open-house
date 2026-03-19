@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+   ______                            __
+  / ____/___  ____ ___  ____  __  __/ /____  _____
+ / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
+/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
+\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
+                    /_/
+        Created with Perplexity Computer
+        https://www.perplexity.ai/computer
+-->
+
+<!-- Perplexity Computer Attribution — SEO Meta Tags -->
+<meta name="generator" content="Perplexity Computer">
+<meta name="author" content="Perplexity Computer">
+<meta property="og:see_also" content="https://www.perplexity.ai/computer">
+<link rel="author" href="https://www.perplexity.ai/computer">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#141414">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>USA Homebids Open House</title>
+<link rel="manifest" href="manifest.json">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ===== SCREEN 1: SETUP ===== -->
+<div id="screen-setup" class="screen active">
+  <div class="setup-container">
+    <div class="setup-header">
+      <div class="logo-block">
+        <img src="logo-usa-homebids.png" alt="USA Homebids" class="brand-logo" id="setup-logo-img" width="3918" height="1308">
+      </div>
+    </div>
+
+    <form id="setup-form" class="setup-form" novalidate autocomplete="off" data-form-type="other" data-lpignore="true">
+      <h2 class="setup-title">Open House Setup</h2>
+
+      <div class="form-group">
+        <label for="setup-address">Property Address</label>
+        <input type="text" id="setup-address" placeholder="e.g. 123 Main St. Reno, NV 89509" required autocomplete="nope" data-form-type="other" data-lpignore="true" data-1p-ignore>
+      </div>
+
+      <div class="form-group">
+        <label for="setup-date">Open House Date</label>
+        <input type="date" id="setup-date" required>
+      </div>
+
+      <div class="form-group">
+        <label for="setup-pin">4-Digit PIN Code</label>
+        <input type="text" id="setup-pin" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" placeholder="Enter 4-digit PIN" required autocomplete="nope" data-form-type="other" data-lpignore="true" data-1p-ignore style="-webkit-text-security: disc;">
+        <span class="form-hint">Used to exit kiosk mode</span>
+      </div>
+
+      <div class="form-group">
+        <label for="setup-hashtags">Custom Hashtags <span class="optional">(optional)</span></label>
+        <input type="text" id="setup-hashtags" placeholder="e.g. mountaingate, justlisted" autocomplete="nope" data-form-type="other" data-lpignore="true" data-1p-ignore>
+      </div>
+
+      <div class="form-group">
+        <label for="setup-api-token">BoldTrail API Token <span class="optional">(optional)</span></label>
+        <input type="text" id="setup-api-token" placeholder="Paste your BoldTrail V2 API token" autocomplete="nope" data-form-type="other" data-lpignore="true" data-1p-ignore style="-webkit-text-security: disc;">
+        <span class="form-hint">Sign-ins will sync to BoldTrail CRM when provided</span>
+      </div>
+
+      <div class="hashtag-preview" id="hashtag-preview">
+        <p class="hashtag-label">Auto-generated hashtag:</p>
+        <div class="hashtag-list" id="hashtag-list"></div>
+      </div>
+
+      <button type="submit" class="btn-primary" id="btn-start">Start Open House</button>
+    </form>
+
+
+  </div>
+</div>
+
+<!-- ===== SCREEN 2: SIGN-IN ===== -->
+<div id="screen-signin" class="screen">
+  <div class="signin-container">
+    <header class="signin-header">
+      <div class="signin-logo-block">
+        <img src="logo-usa-homebids.png" alt="USA Homebids" class="brand-logo" width="3918" height="1308">
+      </div>
+      <button class="kiosk-lock" id="btn-lock" type="button" aria-label="Admin access">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      </button>
+    </header>
+
+    <div class="signin-property-info">
+      <p class="property-address" id="display-address"></p>
+      <p class="property-date" id="display-date"></p>
+    </div>
+
+    <form id="signin-form" class="signin-form" novalidate autocomplete="off" data-form-type="other" data-lpignore="true">
+      <h2 class="signin-title">Please Sign In</h2>
+
+      <div class="signin-fields">
+        <div class="form-group">
+          <label for="signin-name">Full Name</label>
+          <input type="text" id="signin-name" placeholder="Your full name" required autocomplete="nope" data-form-type="other" data-lpignore="true" data-1p-ignore>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="signin-phone">Phone Number</label>
+            <input type="tel" id="signin-phone" placeholder="(555) 555-5555" autocomplete="nope" data-form-type="other" data-lpignore="true" data-1p-ignore>
+          </div>
+          <div class="form-group">
+            <label for="signin-email">Email Address</label>
+            <input type="text" id="signin-email" placeholder="you@example.com" autocomplete="nope" data-form-type="other" data-lpignore="true" data-1p-ignore>
+          </div>
+        </div>
+
+        <!-- Question 1: Are you an agent? -->
+        <div class="question-block" id="q-agent">
+          <p class="question-label">Are you a real estate agent?</p>
+          <div class="pill-group">
+            <button type="button" class="pill-btn" data-answer="yes" data-question="agent">YES</button>
+            <button type="button" class="pill-btn" data-answer="no" data-question="agent">NO</button>
+          </div>
+        </div>
+
+        <!-- Question 2: Working with buyer's agent? (revealed if NOT agent) -->
+        <div class="question-block conditional hidden" id="q-buyer-agent">
+          <p class="question-label">Are you currently working with a buyer's agent?</p>
+          <div class="pill-group">
+            <button type="button" class="pill-btn" data-answer="yes" data-question="buyer">YES</button>
+            <button type="button" class="pill-btn" data-answer="no" data-question="buyer">NO</button>
+          </div>
+        </div>
+
+        <!-- Question 3: Agent name (revealed if YES to buyer's agent) -->
+        <div class="question-block conditional hidden" id="q-agent-name">
+          <div class="form-group">
+            <label for="signin-agent-name">Agent's name?</label>
+            <input type="text" id="signin-agent-name" placeholder="Your agent's name" autocomplete="nope" data-form-type="other" data-lpignore="true" data-1p-ignore>
+          </div>
+          <button type="button" class="btn-primary btn-continue" id="btn-continue">CONTINUE</button>
+        </div>
+      </div>
+
+      <p class="disclaimer">By signing in, you consent to receive marketing communications from the listing and showing agents and brokerages. You may opt out at any time.</p>
+    </form>
+
+
+  </div>
+
+</div>
+
+<!-- Confirmation Overlay (outside screen for proper z-index) -->
+<div class="confirmation-overlay" id="confirmation-overlay">
+  <div class="confirmation-content">
+    <div class="confirmation-check">
+      <svg width="80" height="80" viewBox="0 0 64 64" fill="none">
+        <circle cx="32" cy="32" r="30" stroke="#F7931E" stroke-width="3"/>
+        <path d="M20 32 L28 40 L44 24" stroke="#F7931E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <h2>Welcome to the Open House!</h2>
+    <p>Please hand the tablet back to the agent.</p>
+  </div>
+</div>
+
+<!-- ===== UPLOAD PROGRESS OVERLAY ===== -->
+<div class="upload-overlay hidden" id="upload-overlay">
+  <div class="upload-panel">
+    <h3 id="upload-title">Syncing to BoldTrail</h3>
+    <div class="upload-progress-bar">
+      <div class="upload-progress-fill" id="upload-progress-fill"></div>
+    </div>
+    <p class="upload-status" id="upload-status">Preparing...</p>
+    <div class="upload-results hidden" id="upload-results">
+      <div class="upload-stat success">
+        <span class="upload-stat-num" id="upload-success-count">0</span>
+        <span class="upload-stat-label">Synced</span>
+      </div>
+      <div class="upload-stat skipped">
+        <span class="upload-stat-num" id="upload-skip-count">0</span>
+        <span class="upload-stat-label">Skipped</span>
+      </div>
+      <div class="upload-stat failed">
+        <span class="upload-stat-num" id="upload-fail-count">0</span>
+        <span class="upload-stat-label">Failed</span>
+      </div>
+    </div>
+    <button type="button" class="btn-primary hidden" id="upload-done-btn">Done</button>
+  </div>
+</div>
+
+<!-- ===== PIN DIALOG ===== -->
+<div class="pin-dialog-overlay hidden" id="pin-overlay">
+  <div class="pin-dialog">
+    <h3>Enter Admin PIN</h3>
+    <input type="text" id="pin-input" inputmode="numeric" maxlength="4" pattern="[0-9]{4}" placeholder="••••" autocomplete="nope" data-form-type="other" data-lpignore="true" data-1p-ignore style="-webkit-text-security: disc;">
+    <p class="pin-error hidden" id="pin-error">Incorrect PIN</p>
+    <div class="pin-actions">
+      <button type="button" class="btn-ghost" id="pin-cancel">Cancel</button>
+      <button type="button" class="btn-primary btn-sm" id="pin-submit">Unlock</button>
+    </div>
+    <div class="pin-return-wrap">
+      <button type="button" class="btn-return" id="btn-return-signin">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
+        Return to Sign In
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ADMIN PANEL ===== -->
+<div class="admin-overlay hidden" id="admin-overlay">
+  <div class="admin-panel">
+    <div class="admin-header">
+      <h2>Admin Panel</h2>
+      <button type="button" class="btn-close" id="admin-close" aria-label="Close admin panel">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <div class="admin-stats">
+      <div class="stat-card">
+        <span class="stat-number" id="stat-count">0</span>
+        <span class="stat-label">Sign-ins Today</span>
+      </div>
+    </div>
+
+    <div class="admin-actions">
+      <button type="button" class="btn-primary" id="btn-view-signins">View Sign-Ins</button>
+      <button type="button" class="btn-primary" id="btn-export-csv">Export CSV</button>
+      <button type="button" class="btn-primary btn-sync hidden" id="btn-sync-now">Sync to CRM</button>
+      <button type="button" class="btn-danger" id="btn-end-openhouse">End Open House</button>
+    </div>
+
+    <!-- Sign-ins table (hidden by default) -->
+    <div class="signins-table-wrap hidden" id="signins-table-wrap">
+      <table class="signins-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Type</th>
+            <th>Time</th>
+            <th>CRM</th>
+          </tr>
+        </thead>
+        <tbody id="signins-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
